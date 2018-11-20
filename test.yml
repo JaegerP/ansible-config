@@ -2,7 +2,10 @@
 - hosts: all
   remote_user: root
   tasks:
-  - name: test facts
+  - name: test hostname
     debug:
       msg: "{{ ansible_hostname }}"
+  - name: test os dist
+    debug:
+      msg: "{{ ansible_distribution_release }}"
 
