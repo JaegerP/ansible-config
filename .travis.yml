@@ -19,4 +19,8 @@ services:
   - docker
 
 before_install:
+  - 'sudo docker pull ${distribution}:${version}'
+  - 'sudo docker build --no-cache --rm --file=travis/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible travis'
+
+script:
   - ./run-script.sh
