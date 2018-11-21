@@ -1,0 +1,14 @@
+---
+#- hosts: pool
+#  remote_user: root
+  handlers:
+  - name: restart nginx
+    service:
+      name: nginx
+      state: started
+      enabled: yes
+  - name: stop nginx
+    service: 
+      name: nginx
+      state: stopped
+#    command: 'killall nginx'

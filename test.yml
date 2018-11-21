@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: local
   remote_user: root
   tasks:
   - name: test hostname
@@ -7,5 +7,10 @@
       msg: "{{ ansible_hostname }}"
   - name: test os dist
     debug:
-      msg: "{{ ansible_distribution_release }}"
+      msg: "{{ ansible_distribution }} {{ ansible_distribution_release }}"
+  - name: install nginx
+    include: "{{ item }}"
+    with_items:
+    - "tasks/nginx.yml"
+    
 
