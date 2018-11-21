@@ -11,6 +11,6 @@
   - name: install nginx
     include: "{{ item }}"
     with_items:
-    - "tasks/nginx.yml"
+    - "tasks/httpd.yml"
     
 

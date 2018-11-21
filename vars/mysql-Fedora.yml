@@ -1,0 +1,4 @@
+---
+  - mariadb_root_passwd: my-mariadb-passwd
+  - deps:
+      - mariadb-server

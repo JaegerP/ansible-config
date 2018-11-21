@@ -1,0 +1,40 @@
+---
+#- hosts: pool
+#  remote_user: root
+#  tasks: 
+#  - name: setup epel-repo
+#    package:
+#      name: epel-release
+#      state: latest
+#    when: ansible_distribution == "CentOS"
+  - name: install or update to latest version of nginx (RedHat-like)
+    package:
+      name: httpd
+      state: latest
+    when: ansible_distribution == "CentOS" | ansible_distribution == "Fedora"
+  - name: install or update to latest version of nginx (Debian-like)
+    package:
+      name: apache2
+      state: latest
+    when: ansible_distribution == "Debian" | ansible_distribution == "Ubuntu"
+#  - name: copy nginx config files
+#    copy:
+#      src: ./config/nginx/nginx.conf
+#      dest: /etc/nginx/nginx.conf
+  - name: test nginx config and restart nginx
+    command: httpd -t
+    changed_when: false
+    notify: 
+#      - stop nginx
+      - restart apache2
+#  - name: ensure nginx is running and enabled
+#    service:
+#      name: nginx
+#      enabled: yes
+#      state: restarted
+#    changed_when: false
+#  handlers:
+#  - name: restart nginx
+#    service:
+#      name: nginx
+#      state: restarted

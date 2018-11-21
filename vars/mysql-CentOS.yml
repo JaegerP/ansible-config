@@ -1,0 +1,7 @@
+---
+  - mariadb_root_passwd: my-mariadb-passwd
+  - deps:
+      - mariadb
+      - mariadb-libs
+      - mariadb-server
+      - MySQL-python
